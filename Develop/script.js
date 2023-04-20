@@ -7,9 +7,6 @@ var lowerCassArr = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o',
 var upperCassArr = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',];
 var numberArr = ['1','2','3','4','5','6','7','8','9','0'];
 
-function generatePassword () {
-  console.log("Hi! You clicked the button!");
-}
 ///1. Prompt the user for the password Criteria
 //     A. password length 8 < 128
 //     B. lowercase, uppercase, special characters
@@ -44,11 +41,24 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+   var correctPrompts = getPrompts();
+   var passwordText = document.querySelector("#password");
+    if(correctPrompts){
+       var newPassword = generatePassword();
+       passwordText.value = newPassword;
+    } else {
+      passwordTest.value = "";
+    }
+}
 
-  passwordText.value = password;
-
+function generatePassword () {
+  var password = "";
+  for(var i = 0; i < characterLength; i++) {
+    var randomIndex = Math.floor(Math.random() * choiceArr.length);
+    password = password + choiceArr[randomIndex];
+  }
+    return password;
+    console.log("Hi! You clicked the button!");
 }
 
 // Add event listener to generate button
